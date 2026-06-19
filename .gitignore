@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 
 # Generated benchmark outputs
+data/
 runs/
 
 # Local model artifacts
@@ -11,4 +12,3 @@ runs/
 *.bin
 *.pt
 *.gguf
-

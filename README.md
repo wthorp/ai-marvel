@@ -6,10 +6,17 @@ This folder contains the benchmark harness for comparing:
 - local Hyper-Extract graph extraction,
 - closed-book LoRA or QLoRA fine-tuning.
 
-The raw dump is expected at:
+Download the raw dump:
 
 ```bash
-../enmarveldatabase_pages_current.xml
+python3 scripts/download_wiki_dump.py --extract
+```
+
+This writes:
+
+```bash
+data/enmarveldatabase_pages_current.xml.7z
+data/enmarveldatabase_pages_current.xml
 ```
 
 Run a balanced smoke sample:
@@ -19,7 +26,7 @@ python3 scripts/run_timed.py \
   --name extract_mixed_smoke \
   --log-dir runs/mixed-smoke/timing \
   -- python3 scripts/extract_pages.py \
-    --xml ../enmarveldatabase_pages_current.xml \
+    --xml data/enmarveldatabase_pages_current.xml \
     --out runs/mixed-smoke/pages.jsonl \
     --templates character,comic \
     --template-limits character=25,comic=25

@@ -2,6 +2,28 @@
 
 Run commands from `marvel-experiment/`.
 
+## Download The Wiki Dump
+
+Check the remote dump metadata without downloading:
+
+```bash
+python3 scripts/download_wiki_dump.py --check
+```
+
+Download and extract the current-pages dump:
+
+```bash
+python3 scripts/download_wiki_dump.py --extract
+```
+
+The script downloads the Marvel Database Fandom current-pages archive from:
+
+```text
+https://s3.amazonaws.com/wikia_xml_dumps/e/en/enmarveldatabase_pages_current.xml.7z
+```
+
+Fandom documents database downloads on each wiki's `Special:Statistics` page. The archive is `.7z`, so extraction requires `7zz`, `7z`, or `bsdtar`.
+
 ## Smoke Run
 
 Balanced character/comic extraction:
@@ -11,7 +33,7 @@ python3 scripts/run_timed.py \
   --name extract_mixed_smoke \
   --log-dir runs/mixed-smoke/timing \
   -- python3 scripts/extract_pages.py \
-    --xml ../enmarveldatabase_pages_current.xml \
+    --xml data/enmarveldatabase_pages_current.xml \
     --out runs/mixed-smoke/pages.jsonl \
     --templates character,comic \
     --template-limits character=25,comic=25
@@ -60,7 +82,7 @@ python3 scripts/run_timed.py \
   --name extract_1k_balanced \
   --log-dir runs/1k-balanced/timing \
   -- python3 scripts/extract_pages.py \
-    --xml ../enmarveldatabase_pages_current.xml \
+    --xml data/enmarveldatabase_pages_current.xml \
     --out runs/1k-balanced/pages.jsonl \
     --templates character,comic \
     --template-limits character=500,comic=500
@@ -144,4 +166,3 @@ python3 scripts/score_answers.py \
   --predictions runs/1k-balanced/system-name/predictions.jsonl \
   --out runs/1k-balanced/system-name/scores.json
 ```
-

@@ -23,6 +23,7 @@ Fine-tuning should not be treated as a database. For exact factual recall over a
    - Raw XML is not the right input for any of the systems.
    - Marvel pages contain structured templates, wiki links, and appearance-specific templates.
    - The benchmark uses deterministic parsing to create the shared fact and QA substrate.
+   - The dump comes from Marvel Database on Fandom, using the current-pages XML dump linked from Fandom's database-download system.
 
 4. Report timed preprocessing.
    - XML scan and page extraction.
@@ -77,9 +78,9 @@ Fine-tuning should not be treated as a database. For exact factual recall over a
 
 - Hyper-Extract local provider guide: `../hyper-extract/docs/en/concepts/provider-system.md`
 - Hyper-Extract graph template syntax: `../hyper-extract/hyperextract/templates/README.md`
+- Fandom database download help: https://community.fandom.com/wiki/Help:Database_download
 - Gemma model docs: https://ai.google.dev/gemma/docs/core
 - Gemma QLoRA guide: https://ai.google.dev/gemma/docs/core/huggingface_text_finetune_qlora
 - Neo4j LLM Graph Builder: https://github.com/neo4j-labs/llm-graph-builder
 - GLiNER: https://github.com/urchade/GLiNER
 - REBEL paper: https://aclanthology.org/2021.findings-emnlp.204/
-
