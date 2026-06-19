@@ -1,0 +1,83 @@
+language: [en]
+
+name: marvel_graph
+type: graph
+tags: [marvel, comics, character, issue, knowledge_graph]
+
+description:
+  en: 'Marvel Database graph template for characters, comic issues, creators, teams, locations, realities, events, powers, and appearances'
+
+output:
+  description:
+    en: 'Typed Marvel knowledge graph extracted from cleaned Marvel Database page records'
+  entities:
+    description:
+      en: 'Marvel entities'
+    fields:
+      - name: name
+        type: str
+        description:
+          en: 'Canonical entity name exactly as stated in the source record'
+        required: true
+      - name: type
+        type: str
+        description:
+          en: 'One of Character, ComicIssue, ComicVolume, Creator, Team, Organization, Event, Reality, Location, Power, Species, Object, UnknownEntity'
+        required: true
+      - name: description
+        type: str
+        description:
+          en: 'Short source-grounded description, if available'
+        required: false
+  relations:
+    description:
+      en: 'Typed Marvel relationships'
+    fields:
+      - name: source
+        type: str
+        description:
+          en: 'Source entity name'
+        required: true
+      - name: target
+        type: str
+        description:
+          en: 'Target entity name'
+        required: true
+      - name: type
+        type: str
+        description:
+          en: 'One of has_alias, member_of, child_of, parent_of, sibling_of, spouse_of, relative_of, created_by, first_appeared_in, has_power, born_in, died_in, based_in, from_reality, features_entity, part_of_event, written_by, penciled_by, inked_by, colored_by, lettered_by, edited_by'
+        required: true
+      - name: evidence
+        type: str
+        description:
+          en: 'Brief source phrase or field name supporting the relation'
+        required: false
+
+guideline:
+  target:
+    en: 'You extract a strict Marvel comics knowledge graph from cleaned Marvel Database page records.'
+  rules_for_entities:
+    en:
+      - 'Use the page TITLE as the primary entity when it is a character or comic issue.'
+      - 'Only extract entities explicitly present in the record.'
+      - 'Prefer canonical wiki-style names over shortened aliases when both are present.'
+      - 'Do not infer relationships from general Marvel knowledge.'
+  rules_for_relations:
+    en:
+      - 'Use only the relation types listed in the schema.'
+      - 'Every relation must connect two extracted entities.'
+      - 'Use field names such as Parents, Creators, First, Appearing1, Writer1_1, and Event1 as evidence when appropriate.'
+      - 'Do not create a relationship unless the source record explicitly supports it.'
+
+identifiers:
+  entity_id: name
+  relation_id: '{source}|{type}|{target}'
+  relation_members:
+    source: source
+    target: target
+
+display:
+  entity_label: '{name}'
+  relation_label: '{type}'
+

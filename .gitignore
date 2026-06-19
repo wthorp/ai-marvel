@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Generated benchmark outputs
+runs/
+
+# Local model artifacts
+*.faiss
+*.safetensors
+*.bin
+*.pt
+*.gguf
+
